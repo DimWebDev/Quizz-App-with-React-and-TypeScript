@@ -1,5 +1,7 @@
 import React from "react";
 import { AnswerObject } from "./Quiz";
+import { StyledWrapper } from "./QuestionCard.styles";
+import { StyledButtonWrapper } from "./QuestionCardButton.styles";
 
 type Props = {
   question: string;
@@ -19,14 +21,18 @@ export const QuestionCard: React.FC<Props> = ({
   totalQuestions,
 }) => {
   return (
-    <div>
+    <StyledWrapper>
       <p className="number">
         Question: {questionNr} / {totalQuestions}
       </p>
       <p dangerouslySetInnerHTML={{ __html: question }}></p>
       <div>
         {answers.map((answer) => (
-          <div key={answer}>
+          <StyledButtonWrapper
+            key={answer}
+            correct={userAnswer?.correctAnswer === answer}
+            userClicked={userAnswer?.answer === answer}
+          >
             <button
               disabled={userAnswer ? true : false}
               value={answer}
@@ -34,9 +40,9 @@ export const QuestionCard: React.FC<Props> = ({
             >
               <span dangerouslySetInnerHTML={{ __html: answer }}></span>
             </button>
-          </div>
+          </StyledButtonWrapper>
         ))}
       </div>
-    </div>
+    </StyledWrapper>
   );
 };

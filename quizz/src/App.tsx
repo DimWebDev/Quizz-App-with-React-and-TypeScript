@@ -1,11 +1,15 @@
 import React from "react";
+import { GlobalStyle, Wrapper } from "./Styles/App.styles";
 
 import { Quiz } from "./components/Quiz";
 
 export const App = () => {
   return (
-    <div className="App">
-      <Quiz />
-    </div>
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <Quiz />
+      </Wrapper>
+    </>
   );
 };
